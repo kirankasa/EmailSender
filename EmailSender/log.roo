@@ -1,0 +1,16 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-06 16:59:40
+project --topLevelPackage com.fss.emailsender --projectName EmailSender --java 6 --packaging JAR
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-06 16:59:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-06 17:02:34
+jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE 
+entity jpa --class ~.domain.Customer --testAutomatically 
+web mvc setup 
+web mvc all --package ~.web
+email sender setup --hostServer 10.44.1.6 --port 25 --protocol SMTP 
+focus --class ~.domain.Customer
+email template setup 
+field string --fieldName name 
+field email template 
+perform tests 
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-06 17:08:09
