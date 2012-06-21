@@ -1,0 +1,241 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<style type="text/css">
+.tablebox{ border:#b8b7b7 1px solid;font-size:12px; color: #000000;
+}
+</style>
+<body style="font-family:Verdana, Geneva, sans-serif;">
+<table style="border:#3399ff solid 2px; color: #3399ff;" width="1000" border="0"  align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td style="background-color:#3399ff; height:25px; text-align:center; color:#FFFFFF; font:18px; font-weight:bold; ">Remedy Assignment Mailers</td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="350" style="background-color:#c0c0c0; height:25px;  color:#242424; font-size:12px; font-weight:bold; text-align:center; ">Ticket Information</td>
+    <td width="2" bgcolor="#3399ff"></td>
+    <td  style="background-color:#c0c0c0; height:25px;  color:#242424; font-size:12px; font-weight:bold; text-align:center; width:644px; " >Customer Information</td>
+  </tr>
+  <tr>
+    <td valign="top"><table width="96%" border="0" align="center" cellpadding="1" cellspacing="1" style=" font-size:12px; color:#242424; text-align:left;">
+  <tr>
+    <td width="30%" style="height:10px;"></td>
+    <td width="3%"></td>
+    <td width="67%"></td>
+  </tr>
+  <tr>
+    <td height="25" >Ticket Id</td>
+    <td>:</td>
+    <td  >${ticketInformation.ticketId}</td>
+  </tr>
+  <tr>
+    <td height="25" >Severity</td>
+    <td>:</td>
+    <td>${ticketInformation.severity}</td>
+  </tr>
+   <tr>
+    <td height="25" >Subject</td>
+    <td>:</td>
+    <td>${ticketInformation.subject}</td>
+  </tr>
+   <tr>
+    <td height="25" >Summary</td>
+    <td>:</td>
+    <td>${ticketInformation.summary}</td>
+  </tr> <tr>
+    <td height="25" >Status</td>
+    <td>:</td>
+    <td>${ticketInformation.status}</td>
+  </tr> <tr>
+    <td height="25" >Status Reason</td>
+    <td>:</td>
+    <td>${ticketInformation.statusReason}</td>
+  </tr>
+</table></td>
+    <td width="2" bgcolor="#3399ff"></td>
+    <td align="center"><table width="96%" border="0" cellspacing="1" cellpadding="1" style=" font-size:12px; color:#242424; text-align:left;">
+  <tr>
+    <td width="30%" style="height:10px;"></td>
+    <td width="2%"></td>
+    <td width="68%"></td>
+  </tr>
+  <tr>
+    <td height="25" >Customer Id</td>
+    <td>:</td>
+    <td  >${customerInformation.customerId}</td>
+  </tr>
+  <tr>
+    <td height="25" >Customer Name</td>
+    <td>:</td>
+    <td>${customerInformation.customerName}</td>
+  </tr>
+   <tr>
+    <td height="25" >Customer Phone</td>
+    <td>:</td>
+    <td>${customerInformation.customerPhone}</td>
+  </tr>
+   <tr>
+    <td height="25" >Customer Email</td>
+    <td>:</td>
+    <td>${customerInformation.customerEmail}</td>
+  </tr>
+ <#-- <tr>
+    <td width="2" height="25" >Notes</td>
+    <td>:</td>
+    <td height="25">${incidentInformation.notes}</td>
+  </tr> <tr>
+    <td height="25" >Status</td>
+    <td>:</td>
+    <td height="25">${incidentInformation.status}</td>
+  </tr>
+  <tr>
+    <td height="25" >Status Reason</td>
+    <td>:</td>
+    <td height="20">${incidentInformation.statusReason}</td>
+  </tr>
+  <tr>
+    <td >&nbsp;</td>
+    <td>&nbsp;</td>
+    <td height="20">&nbsp;</td>
+  </tr> -->
+    </table></td>
+  </tr>
+  <tr>
+    <td style="background-color:#c0c0c0; height:25px; width:350px; color:#242424; font-size:12px; font-weight:bold; text-align:center;  ">Assignee Information</td>
+    <td width="2" bgcolor="#3399ff"></td>
+    <td style="background-color:#c0c0c0; height:25px; width:350px; color:#242424; font-size:12px; font-weight:bold; text-align:center; ">SLA Information</td>
+  </tr>
+   <tr>
+    <td valign="top" ><table width="96%" border="0" align="center" cellpadding="1" cellspacing="1" style=" font-size:12px; color:#242424; text-align:left;">
+  <tr>
+    <td width="30%" style="height:10px;"></td>
+    <td width="3%"></td>
+    <td width="67%"></td>
+  </tr>
+  <tr>
+    <td height="25" >Assigned GroupId</td>
+    <td>:</td>
+    <td  >${assigneeInformation.assignedGroupId}</td>
+  </tr>
+  <tr>
+    <td height="25" >Assigned GroupName</td>
+    <td>:</td>
+    <td>${assigneeInformation.assignedGroupName}</td>
+  </tr>
+   <tr>
+    <td height="25" >Assigned UserId</td>
+    <td>:</td>
+    <td>${assigneeInformation.assignedUserId}</td>
+  </tr>
+   <tr>
+    <td height="25" >Assigned UserName</td>
+    <td>:</td>
+    <td>${assigneeInformation.assignedUserName}</td>
+  </tr> 
+  <#--<tr>
+    <td height="25" >BU</td>
+    <td>:</td>
+    <td>${contactInformation.bu}</td>
+  </tr> <tr>
+    <td height="25" >Project</td>
+    <td>:</td>
+    <td>${contactInformation.project}</td>
+  </tr> -->
+</table></td>
+    <td width="2" bgcolor="#3399ff"></td>
+    <td ><table width="96%" border="0" align="center" cellpadding="1" cellspacing="1" style=" font-size:12px; color:#242424; text-align:left;">
+  <tr>
+    <td width="30%" style="height:10px;"></td>
+    <td width="2%"></td>
+    <td width="68%"></td>
+  </tr>
+  <tr>
+    <td height="25" >Due Date</td>
+    <td>:</td>
+    <td  >${slaInformation.slaDueTime?datetime}</td>
+  </tr>
+ <#-- <tr>
+    <td height="25" >Priority</td>
+    <td>:</td>
+    <td>Medium</td>
+  </tr>
+   <tr>
+    <td height="25" >Summary</td>
+    <td>:</td>
+    <td>Best-IT Delivery</td>
+  </tr>
+   <tr>
+    <td height="25" >SBU</td>
+    <td>:</td>
+    <td>Hardware - System not   booting / Reboot</td>
+  </tr> <tr>
+    <td >Notes</td>
+    <td>:</td>
+    <td>Since yesterday, i am unable to boot my LAPTOP i get blue screen each time. <br />
+      <br />
+      I am able to login in safe mode; but when i boot using Network then i   see the crash.</td>
+  </tr> <tr>
+    <td height="25" >Status</td>
+    <td>:</td>
+    <td>Assigned</td>
+  </tr>
+  <tr>
+    <td height="25" >Status Reason</td>
+    <td>:</td>
+    <td>Assigned</td>
+  </tr>
+    <tr>
+    <td height="25" ></td>
+    <td></td>
+    <td></td>
+  </tr> -->
+</table></td>
+  </tr><tr>
+    <td  bgcolor="#3399ff" colspan="3" height="2"></td>
+    </tr> <tr>
+    <td colspan="3" style="background-color:#c0c0c0; height:25px; width:350px; color:#242424; font-size:12px; font-weight:bold; text-align:center;  " >Conversation Details</td>
+    </tr>
+   <tr>
+    <td colspan="3" valign="top" ><table width="100%" border="0"  align="center" cellpadding="0" cellspacing="0" class="tablebox" >
+  <tr>
+    <td  style="background-color:#c6deff; height:25px; text-align:center;  color:#1e1d1d; padding:5px 5px 5px 5px; font-size:11px; font-weight:bold;" >Conversation Date</td>
+    <td width="1" style="background-color:#a1a1a1;" ></td>
+    <td  style="background-color:#c6deff; height:25px;text-align:center; color:#1e1d1d;font-size:11px; font-weight:bold;">Conversation By</td>
+          <td width="1" bgcolor="#a1a1a1"></td>
+    <td  style="background-color:#c6deff; height:25px;text-align:center; color:#1e1d1d;font-size:11px; font-weight:bold;">Conversation</td>
+           <td width="1" bgcolor="#a1a1a1"></td>
+  <#--  <td  style="background-color:#c6deff; height:25px;text-align:center; color:#1e1d1d;font-size:11px; font-weight:bold;">Details</td>
+            <td width="1" bgcolor="#a1a1a1" ></td>
+    <td  style="background-color:#c6deff; height:25px;text-align:center; color:#1e1d1d;font-size:11px; font-weight:bold;">Submitter</td>
+         <td bgcolor="#a1a1a1"></td>
+    <td  style="background-color:#c6deff; height:25px; text-align:center; color:#000000;font-size:11px; font-weight:bold;">Attach</td>
+  -->
+  </tr>
+  <tr>
+    <td height="25" style=" padding:5px 5px 5px 5px;">${conversationDetail.conversationDate?datetime}</td>
+            <td  bgcolor="#a1a1a1"></td>
+    <td height="25" style=" padding:5px 5px 5px 5px;">${conversationDetail.conversationBy}</td>
+    <td width="1" bgcolor="#a1a1a1"></td>
+    <td height="25" style=" padding:5px 5px 5px 5px;">${conversationDetail.conversation}</td>
+    <td bgcolor="#a1a1a1"></td>
+    <#-- <td height="25" style=" padding:5px 5px 5px 5px;">${workLogDetail.details}</td>
+       <td bgcolor="#a1a1a1"></td>
+    <td height="25" style=" padding:5px 5px 5px 5px;">${workLogDetail.submitter}</td>
+    <td width="1" bgcolor="#a1a1a1"></td>-->
+  </tr>
+  
+</table>
+</td>
+    </tr>
+</table>
+</td>
+  </tr>
+</table>
+</body>
+</html>

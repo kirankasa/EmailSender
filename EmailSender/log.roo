@@ -14,7 +14,3 @@ field email template
 perform tests 
 quit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-06 17:08:09
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-06 22:16:11
-email sender setup --hostServer smtp.gmail.com --port 465 --username kiranreddy2004@gmail.com --password kazhuthey@123 --protocol SMTP 
-quit
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-06 22:18:00

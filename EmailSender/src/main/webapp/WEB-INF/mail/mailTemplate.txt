@@ -1,0 +1,16 @@
+<html>
+<head>
+  <title>Welcome!</title>
+</head>
+<body>
+  <h1>Welcome ${user}!</h1>
+  <p>Our latest product:
+  <a href="${latestProduct.url}">${latestProduct.name}</a>!
+<table>
+<tr><th>Customer Information</th></tr>
+<tr><td BGCOLOR="00ffff">Customer Name</td><td BGCOLOR="00ffff">${customerName}</td></tr>
+<tr><td BGCOLOR="00ffff">Customer Id</td><td BGCOLOR="00ffff">${customerId}</td></tr>
+<tr><td BGCOLOR="00ffff">Project Name</td><td BGCOLOR="00ffff">${project}</td></tr>
+</table>
+</body>
+</html>  
