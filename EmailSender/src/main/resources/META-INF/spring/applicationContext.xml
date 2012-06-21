@@ -71,17 +71,9 @@
         <property name="host" value="${email.host}"/>
         <property name="protocol" value="${email.protocol}"/>
         <property name="port" value="${email.port}"/>
-        <property name="username" value="${email.username}"/>
-        <property name="password" value="${email.password}"/>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-            </props>
-        </property>
     </bean>
     
-      <bean id="freemarkerMailConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+    <bean id="freemarkerMailConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
           <property name="templateLoaderPath" value="/WEB-INF/mail" />
        </bean>
 </beans>

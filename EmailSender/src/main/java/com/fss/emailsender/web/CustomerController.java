@@ -28,7 +28,7 @@ public class CustomerController {
         }
         uiModel.asMap().clear();
         customer.persist();
-        customer.sendMessage("kiran@fss.com", "Test", "kiranreddy2004@gmail.com", "hey wassup!!");
+        customer.sendMessage("kiran@fss.com", "Test", customer.getName(), "hey wassup!!");
         return "redirect:/customers/" + encodeUrlPathSegment(customer.getId().toString(), httpServletRequest);
     }
 

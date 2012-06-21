@@ -1,6 +1,7 @@
 package com.fss.emailsender.domain;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,6 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -42,90 +41,153 @@ import freemarker.template.TemplateException;
 public class Customer {
 
 	private String name;
-	@Autowired
-	private transient Configuration configuration;
-	private transient String freemarkerTemplate="mytemplate.txt";
+	private transient Map templateDetails;
+	private transient TicketDTO ticketDTO;
+	/*
+	 * @Autowired private transient MailSender mailTemplate;
+	 */
 
-	@Autowired
-	private transient MailSender mailTemplate;
-	
 	@Autowired
 	private transient JavaMailSenderImpl mailSender;
 
-	public void sendMessage(final String mailFrom,final String subject,final String mailTo,
-			String message) {
-		org.springframework.mail.SimpleMailMessage mailMessage = new org.springframework.mail.SimpleMailMessage();
-		final Map model = new HashMap();
-		model.put("name", "Tim");
-		
-		final	Map root = new HashMap();
-        root.put("user", "Big Joe");
-        Map latest = new HashMap();
-        root.put("latestProduct", latest);
-        latest.put("url", "products/greenmouse.html");
-        latest.put("name", "green mouse");
+	@Autowired
+	private transient Configuration configuration;
+	private transient String freemarkerTemplate = "mailTemplate.html";
 
-		String result = "";
-		try {
-			result = FreeMarkerTemplateUtils.processTemplateIntoString(
-					configuration.getTemplate(freemarkerTemplate), root);
-		} catch (IOException e) {
-			System.out
-					.println("Unable to read or process freemarker configuration or template");
-		} catch (TemplateException e) {
-			System.out
-					.println("Problem initializing freemarker or rendering template ");
-		}
-		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		
-		try {
-			mimeMessage.setContent("","text/html");
-			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-			helper.setFrom(mailFrom);
-			
-			helper.setSubject(subject);
-			helper.setTo(mailTo);
-			helper.setText(result);
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void iniatialize(TicketDTO ticketDTO) {
+		templateDetails = new HashMap();
 
-		mailMessage.setFrom(mailFrom);
+		// ticketInformation
+
+		Map ticketInformation = new HashMap();
+		templateDetails.put("ticketInformation", ticketInformation);
+		ticketInformation.put("ticketId", ticketDTO.getTicketId());
+		ticketInformation.put("severity", ticketDTO.getSeverity());
+		ticketInformation.put("subject", ticketDTO.getSubject());
+		ticketInformation.put("summary", ticketDTO.getSummary());
+		ticketInformation.put("status", ticketDTO.getStatus());
+		ticketInformation.put("statusReason", ticketDTO.getStatusReason());
+	
+		// customerInformation
+		Map customerInformation = new HashMap();
+		templateDetails.put("customerInformation", customerInformation);
+		customerInformation.put("customerId", ticketDTO.getCustomerId());
+		customerInformation.put("customerName", ticketDTO.getCustomerName());
+		customerInformation.put("customerPhone", ticketDTO.getCustomerPhone());
+		customerInformation.put("customerEmail", ticketDTO.getCustomerEmail());
 		
-		mailMessage.setSubject(subject);
-		mailMessage.setTo(mailTo);
-		mailMessage.setText(result);
-	//	mailSender.send(mimeMessage);
 		
-		 mailSender.send(new MimeMessagePreparator() {
-			   public void prepare(MimeMessage mimeMessage) throws MessagingException {
-			     MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-			     message.setFrom(mailFrom);
-			     message.setTo(mailTo);
-			     message.setSubject(subject);
-			     try {
-					message.setText(FreeMarkerTemplateUtils.processTemplateIntoString(
-								configuration.getTemplate(freemarkerTemplate), root), true);
+		// assigneeInformation
+		Map assigneeInformation = new HashMap();
+		templateDetails.put("assigneeInformation", assigneeInformation);
+		assigneeInformation.put("assignedGroupId",
+				ticketDTO.getAssignedGroupId());
+		assigneeInformation.put("assignedGroupName",
+				ticketDTO.getAssignedGroupName());
+		assigneeInformation
+				.put("assignedUserId", ticketDTO.getAssignedUserId());
+		assigneeInformation.put("assignedUserName",
+				ticketDTO.getAssignedUserName());
+		
+		
+		// slaInformation
+		Map slaInformation = new HashMap();
+		templateDetails.put("slaInformation", slaInformation);
+		slaInformation.put("slaDueTime", ticketDTO.getSlaDueTime());
+		
+		
+		// conversationDetail
+		Map conversationDetail = new HashMap();
+		templateDetails.put("conversationDetail", conversationDetail);
+		conversationDetail.put("conversationDate", ticketDTO
+				.getConversationDTO().getConversationDate());
+		conversationDetail.put("conversationBy", ticketDTO.getConversationDTO()
+				.getConversationBy());
+		conversationDetail.put("conversation", ticketDTO.getConversationDTO()
+				.getConversation());
+
+	}
+
+	public void createTicketDTO() {
+		ticketDTO = new TicketDTO();
+		ticketDTO.setTicketId("123456");
+		ticketDTO.setSeverity("Medium");
+		ticketDTO.setSubject("Test Ticket Subject");
+		ticketDTO.setSummary("Test Ticket Summary ");
+		ticketDTO.setStatus("Open");
+		ticketDTO.setStatusReason("Open");
+
+		ticketDTO.setCustomerId("7890");
+		ticketDTO.setCustomerName("kiran");
+		ticketDTO.setCustomerPhone("9940245555");
+		ticketDTO.setCustomerEmail("xyz@xyz.com");
+
+		ticketDTO.setAssignedGroupId("455355");
+		ticketDTO.setAssignedGroupName("Startrek");
+		ticketDTO.setAssignedUserId("35345");
+		ticketDTO.setAssignedUserName("cooper");
+
+		ticketDTO.setSlaDueTime(new Date());
+
+		ConversationDTO conversationDTO = new ConversationDTO();
+		conversationDTO.setConversation("Test Ticket Conversation ");
+		conversationDTO.setConversationBy("stanley");
+		conversationDTO.setConversationDate(new Date());
+
+		ticketDTO.setConversationDTO(conversationDTO);
+
+	}
+
+	public void sendMessage(final String mailFrom, final String subject,
+			final String mailTo, String message) {
+		/*
+		 * org.springframework.mail.SimpleMailMessage mailMessage = new
+		 * org.springframework.mail.SimpleMailMessage();
+		 * mailMessage.setFrom(mailFrom); mailMessage.setSubject(subject);
+		 * mailMessage.setTo(mailTo); mailMessage.setText(message);
+		 * mailTemplate.send(mailMessage);
+		 */
+
+		/*
+		 * final Map root = new HashMap(); root.put("user", "Kiran Reddy"); Map
+		 * latest = new HashMap(); root.put("latestProduct", latest);
+		 * latest.put("url", "http://reddy.cloudfoundry.com/");
+		 * latest.put("name", "My PizzaHut"); root.put("customerName",
+		 * "Kiran Kumar reddy"); root.put("customerId", "12298");
+		 * root.put("project", "Help desk");
+		 */
+		createTicketDTO();
+		iniatialize(ticketDTO);
+		mailSender.send(new MimeMessagePreparator() {
+			public void prepare(MimeMessage mimeMessage)
+					throws MessagingException {
+				MimeMessageHelper message = new MimeMessageHelper(mimeMessage,
+						true, "UTF-8");
+				message.setFrom(mailFrom);
+				message.setTo(mailTo);
+				message.setSubject(subject);
+				try {
+					final String resultString = FreeMarkerTemplateUtils
+							.processTemplateIntoString(configuration
+									.getTemplate(freemarkerTemplate),
+									templateDetails);
+					message.setText(resultString, true);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (TemplateException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			   //  message.addInline("myLogo", new ClassPathResource("img/mylogo.gif"));
-			     //message.addAttachment("myDocument.pdf", new ClassPathResource("doc/myDocument.pdf"));
-			   }
-			 });
-	}
 
-	public void setFreemarkerMailConfiguration(Configuration configuration) {
-		this.configuration = configuration;
-	}
-
-	public void setFreemarkerTemplate(String freemarkerTemplate) {
-		this.freemarkerTemplate = freemarkerTemplate;
+				// to add attachment
+				/*
+				 * message.addInline("myLogo", new
+				 * ClassPathResource("img/mylogo.gif"));
+				 * message.addAttachment("myDocument.pdf", new
+				 * ClassPathResource("doc/myDocument.pdf"));
+				 */
+			}
+		});
 	}
 
 	public String getName() {
