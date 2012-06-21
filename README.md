@@ -1,7 +1,9 @@
 EmailSender
 ===========
 
-This is a voters list project developed by Spring roo
+This is a Email sender project developed by Spring roo
+
+Freemarker is used for sending the HTML template mails.
 
 
 By    : kiranreddykasa
